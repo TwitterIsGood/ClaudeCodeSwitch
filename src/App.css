@@ -1,0 +1,622 @@
+/* ===================== Base Reset ===================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  font-family: Roboto, system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#root {
+  height: 100%;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ===================== Titlebar ===================== */
+.titlebar {
+  height: 32px;
+  background: var(--md-sys-color-surface-container-low);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  -webkit-app-region: drag;
+  flex-shrink: 0;
+  transition: background-color 0.3s;
+}
+
+.titlebar-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  margin-left: 8px;
+}
+
+.titlebar-controls {
+  display: flex;
+  -webkit-app-region: no-drag;
+}
+
+.titlebar-button {
+  width: 46px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: background-color 0.15s;
+}
+
+.titlebar-button:hover {
+  background: var(--md-sys-color-surface-variant);
+}
+
+.titlebar-button.close:hover {
+  background: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
+}
+
+/* ===================== App Body Layout ===================== */
+.app-body {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  overflow: hidden;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===================== Navigation Rail (≥600px) ===================== */
+.nav-rail {
+  width: 80px;
+  flex-shrink: 0;
+  background: var(--md-sys-color-surface-container-low);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12px;
+  gap: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-rail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 4px 0;
+  width: 100%;
+}
+
+.nav-rail-indicator {
+  width: 56px;
+  height: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.nav-rail-item:hover .nav-rail-indicator {
+  background: var(--md-sys-color-surface-variant);
+}
+
+.nav-rail-item.active .nav-rail-indicator {
+  background: var(--md-sys-color-secondary-container);
+}
+
+.nav-rail-item.active .nav-rail-indicator md-icon {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.nav-rail-item md-icon {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 24px;
+}
+
+.nav-rail-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+  text-align: center;
+}
+
+.nav-rail-item.active .nav-rail-label {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 700;
+}
+
+/* ===================== Bottom Navigation (<600px) ===================== */
+.bottom-nav {
+  height: 80px;
+  flex-shrink: 0;
+  background: var(--md-sys-color-surface-container-low);
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid var(--md-sys-color-surface-variant);
+  transition: background-color 0.3s;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 12px 0 16px;
+  flex: 1;
+}
+
+.bottom-nav-indicator {
+  width: 64px;
+  height: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.bottom-nav-item:hover .bottom-nav-indicator {
+  background: var(--md-sys-color-surface-variant);
+}
+
+.bottom-nav-item.active .bottom-nav-indicator {
+  background: var(--md-sys-color-secondary-container);
+}
+
+.bottom-nav-item.active .bottom-nav-indicator md-icon {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.bottom-nav-item md-icon {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 24px;
+}
+
+.bottom-nav-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.bottom-nav-item.active .bottom-nav-label {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 700;
+}
+
+/* ===================== Headings ===================== */
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: left;
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+/* ===================== Cards ===================== */
+.card {
+  background: var(--md-sys-color-surface-container-low);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.file-selector {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.file-path {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background: var(--md-sys-color-surface-variant);
+  border-radius: 8px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: Consolas, monospace;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===================== Provider Tabs ===================== */
+.provider-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.provider-tab {
+  padding: 0.4rem 1rem;
+  background: transparent;
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--md-sys-color-on-surface);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.provider-tab:hover {
+  background: var(--md-sys-color-surface-variant);
+}
+
+.provider-tab.active {
+  background: var(--md-sys-color-secondary-container);
+  border-color: transparent;
+  color: var(--md-sys-color-on-secondary-container);
+  font-weight: 600;
+}
+
+.provider-tab.add-btn {
+  border-style: dashed;
+  color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+}
+
+/* ===================== Forms ===================== */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--md-sys-color-on-surface-variant);
+  font-weight: 500;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-row > * {
+  flex: 1;
+  min-width: 180px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--md-sys-color-surface-variant);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+/* ===================== Settings Page ===================== */
+.settings-section {
+  margin-bottom: 2rem;
+}
+
+.settings-section:last-child {
+  margin-bottom: 0;
+}
+
+.settings-section label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--md-sys-color-on-surface);
+  font-weight: 500;
+}
+
+.settings-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.theme-swatches {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.theme-swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid transparent;
+  transition: border-color 0.2s, transform 0.2s;
+  box-sizing: border-box;
+}
+
+.theme-swatch:hover {
+  transform: scale(1.1);
+}
+
+.theme-swatch.active {
+  border-color: var(--md-sys-color-on-background);
+  box-shadow: 0 0 0 2px var(--md-sys-color-background), 0 0 0 4px var(--md-sys-color-on-background);
+}
+
+/* ===================== Toast Styles ===================== */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.toast-message {
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: toastSlideUp 0.3s cubic-bezier(0.2, 0, 0, 1) forwards;
+  pointer-events: auto;
+}
+
+.toast-message.toast-success md-icon {
+  color: #146c2e;
+}
+
+.toast-message.toast-error {
+  background: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.toast-message.toast-error md-icon {
+  color: var(--md-sys-color-error);
+}
+
+.toast-message.toast-info md-icon {
+  color: var(--md-sys-color-primary);
+}
+
+@keyframes toastSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===================== Responsive (<600px) ===================== */
+@media (max-width: 599px) {
+  .bottom-nav {
+    display: flex;
+  }
+
+  .content-area {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row > * {
+    min-width: unset;
+  }
+
+  .file-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toast-container {
+    bottom: 96px;
+  }
+
+  .preset-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===================== Welcome Card Styles ===================== */
+.welcome-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.welcome-header {
+  margin-bottom: 2rem;
+}
+
+.welcome-header h2 {
+  margin: 1rem 0 0.5rem;
+  color: var(--md-sys-color-primary);
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.welcome-subtitle {
+  font-size: 1.1rem;
+  color: var(--md-sys-color-on-surface);
+  margin: 0 0 0.5rem;
+}
+
+.welcome-description {
+  font-size: 0.9rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin: 0;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.preset-card {
+  background: var(--md-sys-color-surface-variant);
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preset-card:hover {
+  background: var(--md-sys-color-secondary-container);
+  transform: translateY(-2px);
+}
+
+.preset-card.selected {
+  border-color: var(--md-sys-color-primary);
+  background: var(--md-sys-color-secondary-container);
+}
+
+.preset-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.preset-desc {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.welcome-configure {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.selected-preset-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: var(--md-sys-color-primary);
+}
+
+.welcome-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.welcome-skip {
+  margin-top: 1.5rem;
+}
+
+/* ===================== Unsaved Banner Styles ===================== */
+.unsaved-banner {
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.unsaved-banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.unsaved-banner-text {
+  flex: 1;
+}
+
+.unsaved-banner-text strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.unsaved-banner-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.unsaved-banner-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+@media (max-width: 599px) {
+  .unsaved-banner {
+    flex-direction: column;
+  }
+
+  .unsaved-banner-actions {
+    flex-direction: column;
+  }
+
+  .unsaved-banner-actions md-outlined-button,
+  .unsaved-banner-actions md-text-button {
+    width: 100%;
+  }
+}

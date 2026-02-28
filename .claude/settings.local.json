@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-tauri-app@latest:*)",
+      "Bash(npm create:*)",
+      "Bash(npm:*)",
+      "Bash(npx tauri:*)",
+      "Bash(cargo:*)",
+      "Bash(cat:*)",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx tsc:*)",
+      "Bash(git:*)"
+    ]
+  }
+}
