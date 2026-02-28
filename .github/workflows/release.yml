@@ -111,7 +111,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            artifacts/windows-build/*
-            artifacts/linux-build/*
-            artifacts/macos-build/*
+            artifacts/**/*.exe
+            artifacts/**/*.msi
+            artifacts/**/*.deb
+            artifacts/**/*.AppImage
+            artifacts/**/*.dmg
           generate_release_notes: true
