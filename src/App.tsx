@@ -198,7 +198,12 @@ const COMMON_LIGHT: Record<string, string> = {
   '--md-sys-color-surface-variant': '#dfe2eb',
   '--md-sys-color-on-surface-variant': '#43474e',
   '--md-sys-color-surface-container-low': '#f6f6f8',
+  '--md-sys-color-surface-container': '#f0f1f3',
+  '--md-sys-color-surface-container-high': '#ebeaee',
+  '--md-sys-color-surface-container-highest': '#e5e4e8',
   '--md-sys-color-outline': '#73777f',
+  '--md-sys-color-inverse-surface': '#2f3033',
+  '--md-sys-color-inverse-on-surface': '#f1f0f4',
 };
 
 const COMMON_DARK: Record<string, string> = {
@@ -213,7 +218,12 @@ const COMMON_DARK: Record<string, string> = {
   '--md-sys-color-surface-variant': '#43474e',
   '--md-sys-color-on-surface-variant': '#c3c7cf',
   '--md-sys-color-surface-container-low': '#252527',
+  '--md-sys-color-surface-container': '#292b2d',
+  '--md-sys-color-surface-container-high': '#343537',
+  '--md-sys-color-surface-container-highest': '#3f4042',
   '--md-sys-color-outline': '#8d9199',
+  '--md-sys-color-inverse-surface': '#e3e2e6',
+  '--md-sys-color-inverse-on-surface': '#2f3033',
 };
 
 const COLOR_TOKENS: Record<ThemeColor, Record<ThemeMode, Record<string, string>>> = {

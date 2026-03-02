@@ -388,8 +388,8 @@ h1 {
 }
 
 .toast-message {
-  background: var(--md-sys-color-surface-variant);
-  color: var(--md-sys-color-on-surface-variant);
+  background: var(--md-sys-color-inverse-surface);
+  color: var(--md-sys-color-inverse-on-surface);
   padding: 14px 24px;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -399,10 +399,15 @@ h1 {
   gap: 12px;
   animation: toastSlideUp 0.3s cubic-bezier(0.2, 0, 0, 1) forwards;
   pointer-events: auto;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.toast-message md-icon {
+  color: var(--md-sys-color-inverse-on-surface);
 }
 
 .toast-message.toast-success md-icon {
-  color: #146c2e;
+  color: var(--md-sys-color-tertiary);
 }
 
 .toast-message.toast-error {
