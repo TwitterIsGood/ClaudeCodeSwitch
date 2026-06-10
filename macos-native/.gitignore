@@ -1,0 +1,10 @@
+# XcodeGen output (regenerate with `xcodegen generate`)
+ClaudeSwitch.xcodeproj/
+
+# Build artifacts
+build/
+DerivedData/
+dist/
+
+# macOS
+.DS_Store

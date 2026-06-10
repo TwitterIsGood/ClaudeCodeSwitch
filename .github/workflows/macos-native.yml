@@ -1,0 +1,78 @@
+name: macOS Native Build
+
+on:
+  push:
+    branches: [macos-native]
+    paths:
+      - 'macos-native/**'
+      - '.github/workflows/macos-native.yml'
+    tags:
+      - 'mac-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+    defaults:
+      run:
+        working-directory: macos-native
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build (Release, ad-hoc signed, universal)
+        run: |
+          xcodebuild \
+            -project ClaudeSwitch.xcodeproj \
+            -scheme ClaudeSwitch \
+            -configuration Release \
+            -derivedDataPath build \
+            ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
+            ENABLE_HARDENED_RUNTIME=NO \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=YES \
+            DEVELOPMENT_TEAM="" \
+            build
+
+      - name: Create DMG
+        run: |
+          APP="build/Build/Products/Release/ClaudeSwitch.app"
+          STAGE="dist/dmg"
+          rm -rf dist && mkdir -p "$STAGE"
+          cp -R "$APP" "$STAGE/"
+          ln -s /Applications "$STAGE/Applications"
+          hdiutil create -volname "ClaudeSwitch" \
+            -srcfolder "$STAGE" -ov -format UDZO "dist/ClaudeSwitch.dmg"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClaudeSwitch-macOS-unsigned
+          path: macos-native/dist/ClaudeSwitch.dmg
+
+      - name: Publish release (on tag)
+        if: startsWith(github.ref, 'refs/tags/mac-v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: macos-native/dist/ClaudeSwitch.dmg
+          body: |
+            ## ClaudeSwitch (macOS 原生版 · 未签名构建)
+
+            > 本构建无 Apple 开发者签名/公证（unsigned, ad-hoc）。
+            > 首次打开会被 Gatekeeper 拦截，请将 App 拖入「应用程序」后在终端执行：
+            >
+            > ```sh
+            > xattr -dr com.apple.quarantine /Applications/ClaudeSwitch.app
+            > ```
+            >
+            > 之后即可正常打开。系统要求：macOS 14+，已含 Apple Silicon + Intel 通用二进制。
